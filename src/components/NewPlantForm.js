@@ -7,7 +7,6 @@ const defaultForm = {
   price: ""
 }
 
-
 function NewPlantForm({ addPlant }) {
   // State and Variable Declaration
   const [formData, setFormData] = useState(defaultForm);
@@ -19,9 +18,7 @@ function NewPlantForm({ addPlant }) {
   // Handles form onSubmit event
   const handleSubmit = (e) => {
     e.preventDefault();
-
     addPlant(formData);
-
     resetForm();
   }
 
@@ -38,9 +35,27 @@ function NewPlantForm({ addPlant }) {
     <div className="new-plant-form">
       <h2>New Plant</h2>
       <form onSubmit={handleSubmit}>
-        <input type="text" name="name" placeholder="Plant name" value={name} onChange={handleFormChange} />
-        <input type="text" name="image" placeholder="Image URL" value={image} onChange={handleFormChange} />
-        <input type="number" name="price" step="0.01" placeholder="Price" value={price} onChange={handleFormChange} />
+        <input
+          type="text"
+          name="name"
+          placeholder="Plant name"
+          value={name}
+          onChange={handleFormChange}
+        />
+        <input
+          type="text"
+          name="image"
+          placeholder="Image URL"
+          value={image}
+          onChange={handleFormChange}
+        />
+        <input
+          type="number"
+          name="price"
+          step="0.01"
+          placeholder="Price"
+          value={price}
+          onChange={handleFormChange} />
         <button type="submit">Add Plant</button>
       </form>
     </div>

@@ -6,9 +6,9 @@ import Search from "./Search";
 function PlantPage() {
   const [plants, setPlants] = useState([]);
   const [searchInput, setSearchInput] = useState("");
-
   const filteredPlants = plants.filter( plant => plant.name.toLowerCase().includes(searchInput.toLowerCase()));
 
+  // Get Plants from Database
   useEffect(() => {
     fetch(`http://localhost:6001/plants`)
       .then( res => res.json())
@@ -16,6 +16,7 @@ function PlantPage() {
       .catch( error => alert(error.message));
   }, [])
 
+  // Add Plant to Database and Validate Price
   const addPlant = (newPlantData) => {
     const validatedPlantData = getValidatedPlant(newPlantData);
 
@@ -32,6 +33,7 @@ function PlantPage() {
       .catch( error => alert(error.message));
   }
   
+  // Update Plant in Database and Validate Price
   const updatePlant = (updatedPlantData) => {
     const validatedPlantData = getValidatedPlant(updatedPlantData);
 
@@ -53,6 +55,7 @@ function PlantPage() {
       .catch( error => alert(error.message));
   }
   
+  // Remove Plant from Database
   const removePlant = (plantToRemove) => {
     fetch(`http://localhost:6001/plants/${plantToRemove.id}`, {
       method: "DELETE",
@@ -74,12 +77,14 @@ function PlantPage() {
       .catch( error => alert(error.message))
   }
 
+  // Return price-validateed plant from plant object/data
   function getValidatedPlant(plant) {
     const numAsPrice = parseFloat(plant.price).toFixed(2);
     const updatedPlant = {...plant, price: numAsPrice};
     return updatedPlant;
   }
 
+  // Page JSX
   return (
     <main>
       <NewPlantForm addPlant={addPlant} />
