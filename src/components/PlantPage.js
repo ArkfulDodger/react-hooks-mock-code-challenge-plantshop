@@ -17,13 +17,15 @@ function PlantPage() {
   }, [])
 
   const addPlant = (newPlantData) => {
+    const validatedPlantData = getValidatedPlant(newPlantData);
+
     fetch(`http://localhost:6001/plants`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json"
       },
-      body: JSON.stringify(newPlantData)
+      body: JSON.stringify(validatedPlantData)
     })
       .then( res => res.json())
       .then( newPlant => setPlants([...plants, newPlant]))
@@ -31,13 +33,15 @@ function PlantPage() {
   }
   
   const updatePlant = (updatedPlantData) => {
+    const validatedPlantData = getValidatedPlant(updatedPlantData);
+
     fetch(`http://localhost:6001/plants/${updatedPlantData.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json"
       },
-      body: JSON.stringify(updatedPlantData)
+      body: JSON.stringify(validatedPlantData)
     })
       .then( res => res.json())
       .then( updatedPlant => {
@@ -68,6 +72,12 @@ function PlantPage() {
         }
       })
       .catch( error => alert(error.message))
+  }
+
+  function getValidatedPlant(plant) {
+    const numAsPrice = parseFloat(plant.price).toFixed(2);
+    const updatedPlant = {...plant, price: numAsPrice};
+    return updatedPlant;
   }
 
   return (

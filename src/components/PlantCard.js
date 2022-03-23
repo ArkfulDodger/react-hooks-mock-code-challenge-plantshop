@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 function PlantCard({ plant, plant: { name, image, price }, updatePlant, removePlant }) {
   const [isInEdit, setIsInEdit] = useState(false);
+  const [priceEditInput, setPriceEditInput] = useState("");
 
   function toggleInStock () {
     !plant.soldOut ? updatePlant({...plant, soldOut: true }) : updatePlant({...plant, soldOut: false })
@@ -12,23 +13,18 @@ function PlantCard({ plant, plant: { name, image, price }, updatePlant, removePl
   }
 
   function onPriceChange({ target: { value }}) {
-    const updatedPlant = {...plant, price: value};
-    updatePlant(updatedPlant);
+    setPriceEditInput(value);
   }
 
   function clickPrice() {
+    setPriceEditInput(plant.price);
     setIsInEdit(isInEdit => !isInEdit);
-  }
-
-  function validatePrice() {
-    const numAsPrice = parseFloat(plant.price).toFixed(2);
-    const updatedPlant = {...plant, price: numAsPrice};
-    updatePlant(updatedPlant);
   }
 
   function onPriceSubmit(e) {
     e.preventDefault();
-    validatePrice();
+    const updatedPlant = {...plant, price: priceEditInput};
+    updatePlant(updatedPlant);
     setIsInEdit(isInEdit => !isInEdit);
   }
 
@@ -39,7 +35,7 @@ function PlantCard({ plant, plant: { name, image, price }, updatePlant, removePl
       {!isInEdit
         ? <p onClick={clickPrice}>Price: {price}</p>
         : (<form onSubmit={onPriceSubmit}>
-            <input type="number" step="0.01" value={plant.price} onChange={onPriceChange}/>
+            <input type="number" step="0.01" value={priceEditInput} onChange={onPriceChange}/>
             <button type="submit">Set New Price</button>
           </form>)
       }
