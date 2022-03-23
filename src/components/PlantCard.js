@@ -29,7 +29,7 @@ function PlantCard({ plant, plant: { name, image, price }, updatePlant, removePl
   }
 
   const priceSection = !isInEdit
-    ? <p onClick={handlePriceClick}>Price: {price}</p>
+    ? <p className="clickable" onClick={handlePriceClick}>Price: {price}</p>
     : (<form onSubmit={onPriceSubmit}>
         <input type="number" step="0.01" value={priceEditInput} onChange={onPriceChange}/>
         <button type="submit">Set New Price</button>

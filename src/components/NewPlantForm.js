@@ -23,9 +23,8 @@ function NewPlantForm({ addPlant }) {
   }
 
   // Handles input onChange events: input name attributes must match formData keys
-  const handleFormChange = ({ target: { type, name, value, checked } }) => {
-    const newValue = type === 'checkbox' ? checked : value; 
-    const updatedFormData = { ...formData, [name]: newValue };
+  const handleFormChange = ({ target: { name: inputName, value: inputValue } }) => {
+    const updatedFormData = { ...formData, [inputName]: inputValue };
 
     setFormData(updatedFormData);
   }

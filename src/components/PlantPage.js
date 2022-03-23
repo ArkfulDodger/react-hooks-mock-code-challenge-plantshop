@@ -8,7 +8,7 @@ function PlantPage() {
   const [searchInput, setSearchInput] = useState("");
   const filteredPlants = plants.filter( plant => plant.name.toLowerCase().includes(searchInput.toLowerCase()));
 
-  // Get Plants from Database
+   // Get Plants from Database
   useEffect(() => {
     fetch(`http://localhost:6001/plants`)
       .then( res => res.json())
