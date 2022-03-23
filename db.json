@@ -4,14 +4,14 @@
       "id": 1,
       "name": "Aloe",
       "image": "./images/aloe.jpg",
-      "price": 15.99,
+      "price": "25.02",
       "soldOut": false
     },
     {
       "id": 2,
       "name": "ZZ Plant",
       "image": "./images/zz-plant.jpg",
-      "price": 25.98,
+      "price": "29.8",
       "soldOut": false
     },
     {
@@ -42,7 +42,8 @@
       "id": 7,
       "name": "Fiddle Leaf Fig",
       "image": "./images/fiddle-leaf-fig.jpg",
-      "price": 55
+      "price": "55.045",
+      "soldOut": false
     }
   ]
 }
