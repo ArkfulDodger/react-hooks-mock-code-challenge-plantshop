@@ -12,7 +12,7 @@
       "name": "ZZ Plant",
       "image": "./images/zz-plant.jpg",
       "price": 25.98,
-      "soldOut": true
+      "soldOut": false
     },
     {
       "id": 3,

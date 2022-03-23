@@ -28,6 +28,12 @@ button.primary {
   color: white;
 }
 
+button.delete {
+  background-color: red;
+  color: white;
+  margin-left: 5px;
+}
+
 .app {
   margin: 0 auto;
   max-width: 1200px;

@@ -15,6 +15,7 @@ function PlantCard({ plant, plant: { name, image, price }, updatePlant }) {
       ) : (
         <button onClick={toggleInStock}>Out of Stock</button>
       )}
+      <button className="delete" onClick={console.log('delete!')}>Delete</button>
     </li>
   );
 }
