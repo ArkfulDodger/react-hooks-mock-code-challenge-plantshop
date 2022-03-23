@@ -1,8 +1,12 @@
 import React from "react";
 
-function PlantCard({ plant, plant: { name, image, price }, updatePlant }) {
+function PlantCard({ plant, plant: { name, image, price }, updatePlant, removePlant }) {
   function toggleInStock () {
     !plant.soldOut ? updatePlant({...plant, soldOut: true }) : updatePlant({...plant, soldOut: false })
+  }
+
+  function handleDeleteClick () {
+    removePlant(plant);
   }
 
   return (
@@ -15,7 +19,7 @@ function PlantCard({ plant, plant: { name, image, price }, updatePlant }) {
       ) : (
         <button onClick={toggleInStock}>Out of Stock</button>
       )}
-      <button className="delete" onClick={console.log('delete!')}>Delete</button>
+      <button className="delete" onClick={handleDeleteClick}>Delete</button>
     </li>
   );
 }

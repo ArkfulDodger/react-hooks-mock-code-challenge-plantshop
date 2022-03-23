@@ -49,32 +49,32 @@ function PlantPage() {
       .catch( error => alert(error.message));
   }
   
-  // const removePlant = (plantToRemove) => {
-  //   fetch(`http://localhost:6001/plants/${plantToRemove.id}`, {
-  //     method: "DELETE",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       Accept: "application/json"
-  //     }
-  //   })
-  //     .then( res => {
-  //       if (res.ok) {
-  //         const updatedPlants = plants.filter( plant => {
-  //           return plant.id !== plantToRemove.id;
-  //         })
-  //         setPlants(updatedPlants);
-  //       } else {
-  //         alert('something went wrong');
-  //       }
-  //     })
-  //     .catch( error => alert(error.message))
-  // }
+  const removePlant = (plantToRemove) => {
+    fetch(`http://localhost:6001/plants/${plantToRemove.id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      }
+    })
+      .then( res => {
+        if (res.ok) {
+          const updatedPlants = plants.filter( plant => {
+            return plant.id !== plantToRemove.id;
+          })
+          setPlants(updatedPlants);
+        } else {
+          alert('something went wrong');
+        }
+      })
+      .catch( error => alert(error.message))
+  }
 
   return (
     <main>
       <NewPlantForm addPlant={addPlant} />
       <Search searchInput={searchInput} setSearchInput={setSearchInput} />
-      <PlantList plants={filteredPlants} updatePlant={updatePlant} />
+      <PlantList plants={filteredPlants} updatePlant={updatePlant} removePlant={removePlant} />
     </main>
   );
 }
